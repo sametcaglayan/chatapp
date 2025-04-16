@@ -23,7 +23,7 @@ Tüm API route'ları için dakikada **60 istek** limiti uygulanmaktadır ⚡.
 
 Admin paneline şu adres üzerinden giriş yapabilirsiniz: [http://localhost:9000/login](http://localhost:9000/login).
 
-- **Kullanıcı adı**: `admin` 👤
+- **Kullanıcı adı**: `admin` (hard coded) 👤
 - **Şifre**: `123` (hard coded) 🔑
 
 Giriş yaptıktan sonra, **Cihaz Listesi** görüntülenir 📋. Kayıtlı cihazların listesinde **Chat butonuna** tıklanarak o cihaza ait **chat ID'leri** listelenir. Chat ID'lerine tıklanıldığında, ilgili chat'e ait mesajlar gösterilir 💬.
