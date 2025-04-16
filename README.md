@@ -29,6 +29,7 @@ Admin paneline şu adres üzerinden giriş yapabilirsiniz: [http://localhost:900
 Giriş yaptıktan sonra, **Cihaz Listesi** görüntülenir 📋. Kayıtlı cihazların listesinde **Chat butonuna** tıklanarak o cihaza ait **chat ID'leri** listelenir. Chat ID'lerine tıklanıldığında, ilgili chat'e ait mesajlar gösterilir 💬.
 
 **Not**: Admin paneli en basit şekilde **Vue.js** ile yazılmıştır 🖌️.
+**Not**: Ayrıca belirtmek isterim ki, Vue.js ve React.js ile deneyimim yok 🫢.
 
 ---
 
