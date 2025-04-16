@@ -1,0 +1,420 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "This is the API documentation for the project.",
+        "contact": {
+            "email": "developer@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/auth": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Cihaz doğrulaması yapar ve token döner",
+                "operationId": "9e1e2488bd682f97402224933d26ff8a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "device_uuid",
+                                    "device_name"
+                                ],
+                                "properties": {
+                                    "device_uuid": {
+                                        "type": "string",
+                                        "example": "123e4567-e89b-12d3-a456-426614174000"
+                                    },
+                                    "device_name": {
+                                        "type": "string",
+                                        "example": "iPhone 14"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Doğrulama başarılı, token döner",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "subscription": {
+                                            "type": "string",
+                                            "example": "free"
+                                        },
+                                        "chat_credit": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "1|a2B3c4D5e6F7g8H9iJ0K"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Geçersiz parametreler",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed."
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/buy": {
+            "post": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Yeni bir satın alma işlemi oluşturur",
+                "operationId": "7885e538ae11209a7b1f4f4a30c3bc5b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "productId"
+                                ],
+                                "properties": {
+                                    "productId": {
+                                        "type": "string",
+                                        "example": "premium"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Satın alma başarılı",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Purchase created successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "device_uuid": {
+                                                    "type": "string",
+                                                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                                                },
+                                                "productId": {
+                                                    "type": "string",
+                                                    "example": "premium"
+                                                },
+                                                "receiptToken": {
+                                                    "type": "string",
+                                                    "example": "a4bc23c5-f634-4b8e-9227-c8cd4b13e611"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Doğrulama hatası",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed."
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/chat": {
+            "post": {
+                "tags": [
+                    "Chat"
+                ],
+                "summary": "Sohbet mesajı gönderir ve yanıt alır",
+                "operationId": "24df736da1edae41ce1d25d7753626f1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "chatId",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "chatId": {
+                                        "type": "string",
+                                        "example": "session_1234"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Hello"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Başarılı mesajlaşma",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "response": {
+                                            "type": "string",
+                                            "example": "I am fine, thank you!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Yetersiz kredi veya chatId uyuşmazlığı",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Insufficient chat credit."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cihaz bulunamadı",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Device not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Doğrulama hatası",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed."
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/subscription": {
+            "post": {
+                "tags": [
+                    "Subscription"
+                ],
+                "summary": "Aboneliği satın alımını kontrol eder",
+                "operationId": "adb1ce4ea0648effa1ab95cd4569bf4e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "productId",
+                                    "receiptToken"
+                                ],
+                                "properties": {
+                                    "productId": {
+                                        "type": "string",
+                                        "example": "product_1234"
+                                    },
+                                    "receiptToken": {
+                                        "type": "string",
+                                        "example": "uuid-token-5678"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Abonelik durumu",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "positive"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Doğrulama hatası",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed."
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Use Bearer token to authenticate",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Cihaz doğrulama ve token alma"
+        },
+        {
+            "name": "Purchase",
+            "description": "Abonelik satın alma işlemleri"
+        },
+        {
+            "name": "Chat",
+            "description": "Mesajlaşma işlemleri"
+        },
+        {
+            "name": "Subscription",
+            "description": "Abonelik Kontrol"
+        }
+    ]
+}
