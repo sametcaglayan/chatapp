@@ -23,12 +23,24 @@ Tüm API route'ları için dakikada **60 istek** limiti uygulanmaktadır ⚡.
 
 Admin paneline şu adres üzerinden giriş yapabilirsiniz: [http://localhost:9000/login](http://localhost:9000/login).
 
-- **Kullanıcı adı**: `admin` (hard coded) 👤
+- **Kullanıcı adı**: `admin` 👤
 - **Şifre**: `123` (hard coded) 🔑
 
 Giriş yaptıktan sonra, **Cihaz Listesi** görüntülenir 📋. Kayıtlı cihazların listesinde **Chat butonuna** tıklanarak o cihaza ait **chat ID'leri** listelenir. Chat ID'lerine tıklanıldığında, ilgili chat'e ait mesajlar gösterilir 💬.
 
 **Not**: Admin paneli en basit şekilde **Vue.js** ile yazılmıştır 🖌️.
+
+---
+
+## Abonelik Türleri ve Krediler 💳
+
+Aşağıda mevcut olan abonelik türleri ve her birine karşılık gelen **chat kredisi** miktarları belirtilmiştir:
+
+- **Basic Abonelik**: 20 kredi 🟢
+- **Pro Abonelik**: 30 kredi 🔵
+- **Premium Abonelik**: 40 kredi 🔴
+
+Bu abonelikler, kullanıcıların **chat kredisi** eklemelerini sağlar. Örneğin, **Pro** aboneliği alındığında, kullanıcıya **30 kredi** eklenir.
 
 ---
 
